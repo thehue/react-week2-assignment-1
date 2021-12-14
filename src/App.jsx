@@ -1,23 +1,27 @@
+/* eslint-disable react/jsx-no-bind */
 import { useState } from 'react';
 
-import Title from './Title';
-import ClickMeButton from './ClickMeButton';
-import NumberButtons from './NumberButtons';
+import Page from './Page';
+import Buttons from './Buttons';
 
-export default function App() {
-  const [count, setCount] = useState(0);
+function App() {
+  const [state, setState] = useState({
+    count: 0,
+  });
+  const { count } = state;
 
-  function handleClick(value = 1) {
-    setCount(count+value);
-    console.log(value);
-    console.log(count);
+  function handleClick(increment) {
+    setState({
+      count: count + increment,
+    });
   }
 
   return (
-    <>
-      <Title />
-      <ClickMeButton count={count} onClick={handleClick} />
-      <NumberButtons onClick={handleClick} />
-    </>
+    <div>
+      <Page count={count} onClick={handleClick} />
+      <Buttons onClick={handleClick} />
+    </div>
   );
 }
+
+export default App;
